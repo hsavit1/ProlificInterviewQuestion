@@ -9,6 +9,8 @@
 #import "BookDetailViewController.h"
 #import <Social/Social.h>
 
+static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/54be71eb46c2c2000866aa56";
+
 @interface BookDetailViewController ()<UIActionSheetDelegate>
 
 @end

@@ -8,6 +8,7 @@
 
 #import "LibraryTableViewController.h"
 #import "AFNetworking.h"
+
 #import "UIKit+AFNetworking.h"
 #import "Books.h"
 #import "BookDetailViewController.h"
@@ -34,7 +35,6 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self makeLibraryRequests];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -50,13 +50,46 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 
 -(void)makeLibraryRequests
 {
+    NSURL *url = [[NSURL alloc]initWithString:BaseURLString];
     NSString *getBooksString = [BaseURLString stringByAppendingString:@"/books"];
-    NSURL *url = [[NSURL alloc]initWithString:getBooksString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURL *url2 = [[NSURL alloc]initWithString:getBooksString];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
     
+//    //ok. this is the code that gives me data for the page. but it doesnt give me the JSON I need
+//    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"success: %@", operation.responseString);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"error: %@",  operation.responseString);
+//    }];
+//    
+//    [operation start];
+    
+//    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url2];
+//    
+//    __block NSDictionary *json;
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//                               json = [NSJSONSerialization JSONObjectWithData:data
+//                                                                      options:0
+//                                                                        error:nil];
+//                               NSLog(@"Async JSON: %@", json);
+//                           }];
+    
+    
+    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+    [securityPolicy setAllowInvalidCertificates:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;// setByAddingObject:@"text/html"];
-    [manager GET:getBooksString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    manager.securityPolicy = securityPolicy;
+    
+    NSLog(@"%@", [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:BaseURLString parameters:nil error:nil]);
+
+    manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
+    //    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:[NSString stringWithFormat:@"%@", getBooksString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"%@", responseObject);
         NSArray *jsonArray = (NSArray *)responseObject;
@@ -82,6 +115,11 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
                                                   otherButtonTitles:nil];
         [alertView show];
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self makeLibraryRequests];
 }
 
 #pragma mark - Table view data source

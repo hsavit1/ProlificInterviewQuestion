@@ -20,7 +20,8 @@
                  url:(NSAttributedString *)aUrl{
     self = [super init];
     
-    if (self) {
+    if (self)
+    {
         self.author = anAuthor;
         self.category = aCategory;
         self.lastCheckedOut = aDate;
@@ -33,7 +34,8 @@
     return self;
 }
 
-- (id)initWithDictionary:(NSDictionary *)dic {
+- (id)initWithDictionary:(NSDictionary *)dic
+{
     self = [self initWithAuthor:dic[@"author"]
                        category:dic[@"category"]
                  lastCheckedOut:dic[@"lastCheckedOut"]
