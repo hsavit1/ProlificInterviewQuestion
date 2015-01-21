@@ -48,12 +48,13 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
+    //operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        NSLog(@"%@", responseObject);
         NSArray *jsonArray = (NSArray *)responseObject;
-        
         NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
         
         for (NSDictionary *dic in jsonArray) {
@@ -69,7 +70,7 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Ninjas"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
                                                             message:[error localizedDescription]
                                                            delegate:nil
                                                   cancelButtonTitle:@"Ok"
