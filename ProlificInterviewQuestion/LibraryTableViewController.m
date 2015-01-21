@@ -84,9 +84,6 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     [securityPolicy setAllowInvalidCertificates:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.securityPolicy = securityPolicy;
-    
-    NSLog(@"%@", [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:BaseURLString parameters:nil error:nil]);
-
     manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
     //    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager GET:[NSString stringWithFormat:@"%@", getBooksString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
