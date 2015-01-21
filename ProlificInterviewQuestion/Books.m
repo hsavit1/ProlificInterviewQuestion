@@ -11,13 +11,13 @@
 @implementation Books
 
 //The designed initializer
-- (id)initWithAuthor:(NSString *)anAuthor
-            category:(NSString *)aCategory
-      lastCheckedOut:(NSString *)aDate
-    lastCheckedOutBy:(NSString *)aPerson
-           publisher:(NSString *)aPublisher
-               title:(NSString *)aTitle
-                 url:(NSString *)aUrl{
+- (id)initWithAuthor:(NSAttributedString *)anAuthor
+            category:(NSAttributedString *)aCategory
+      lastCheckedOut:(NSAttributedString *)aDate
+    lastCheckedOutBy:(NSAttributedString *)aPerson
+           publisher:(NSAttributedString *)aPublisher
+               title:(NSAttributedString *)aTitle
+                 url:(NSAttributedString *)aUrl{
     self = [super init];
     
     if (self) {
@@ -45,18 +45,16 @@
 }
 
 - (id)init {
-    self = [self initWithAuthor:@"Undifined"
-                       category:@"Undifined"
-                 lastCheckedOut:@"Undifined"
-               lastCheckedOutBy:@"Undifined"
-                      publisher:@"Undifined"
-                          title:@"Undifined"
-                            url:@"Undifined"];
+    NSAttributedString *undefinedString = [[NSAttributedString alloc] initWithString:@"Undifined"];
+    
+    self = [self initWithAuthor:undefinedString
+                       category:undefinedString
+                 lastCheckedOut:undefinedString
+               lastCheckedOutBy:undefinedString
+                      publisher:undefinedString
+                          title:undefinedString
+                            url:undefinedString];
     return self;
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%@ : %@", self.title, self.author];
 }
 
 @end

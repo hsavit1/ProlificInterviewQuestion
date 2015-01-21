@@ -10,21 +10,21 @@
 
 @interface Books : NSObject
 
-@property (strong, nonatomic) NSString *author;
-@property (strong, nonatomic) NSString *category;
-@property (strong, nonatomic) NSString *lastCheckedOut;
-@property (strong, nonatomic) NSString *lastCheckedOutBy;
-@property (strong, nonatomic) NSString *publisher;
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSAttributedString *author;
+@property (strong, nonatomic) NSAttributedString *category;
+@property (strong, nonatomic) NSAttributedString *lastCheckedOut;
+@property (strong, nonatomic) NSAttributedString *lastCheckedOutBy;
+@property (strong, nonatomic) NSAttributedString *publisher;
+@property (strong, nonatomic) NSAttributedString *title;
+@property (strong, nonatomic) NSAttributedString *url;
 
-- (id)initWithAuthor:(NSString *)anAuthor
-            category:(NSString *)aCategory
-      lastCheckedOut:(NSString *)aDate
-    lastCheckedOutBy:(NSString *)aPerson
-           publisher:(NSString *)aPublisher
-               title:(NSString *)aTitle
-                 url:(NSString *)aUrl;
+- (id)initWithAuthor:(NSAttributedString *)anAuthor
+            category:(NSAttributedString *)aCategory
+      lastCheckedOut:(NSAttributedString *)aDate
+    lastCheckedOutBy:(NSAttributedString *)aPerson
+           publisher:(NSAttributedString *)aPublisher
+               title:(NSAttributedString *)aTitle
+                 url:(NSAttributedString *)aUrl;
 
 - (id)initWithDictionary:(NSDictionary *)dic;
 

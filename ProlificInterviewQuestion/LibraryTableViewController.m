@@ -46,9 +46,6 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
         selectedBook = [self.booksFromAFNetworking objectAtIndex:ind.item];
         ((BookDetailViewController*)segue.destinationViewController).theSelectedBook = selectedBook;
     }
-    else if([segue.identifier isEqualToString:@"addBook"]){
-    
-    }
 }
 
 -(void)makeLibraryRequests

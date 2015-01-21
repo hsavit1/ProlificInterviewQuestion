@@ -41,7 +41,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Show Detail" id="xSs-lG-aL3">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="oLX-IK-nMd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="oLX-IK-nMd">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="vXZ-lx-hvc" id="Sx0-LL-Zu2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -55,7 +59,7 @@
         <!--Add Book-->
         <scene sceneID="qq1-B8-kcM">
             <objects>
-                <viewController id="XL4-sf-vqB" sceneMemberID="viewController">
+                <viewController id="XL4-sf-vqB" customClass="AddBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EtY-DZ-oFp"/>
                         <viewControllerLayoutGuide type="bottom" id="4Vb-lG-kvx"/>
@@ -95,6 +99,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="XL4-sf-vqB" eventType="touchUpInside" id="ndJ-HM-wtn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,8 +124,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Book" id="3VQ-WT-YGH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="X87-F7-Zqf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="X87-F7-Zqf">
+                            <connections>
+                                <action selector="submitButtonPressed:" destination="XL4-sf-vqB" id="tXA-Pg-olh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bookAuthorField" destination="W0k-cA-XoW" id="DWc-TK-TSj"/>
+                        <outlet property="bookCategoriesField" destination="Phd-yA-2oi" id="HqN-0A-e8X"/>
+                        <outlet property="bookPublisherField" destination="o0p-Yt-fZg" id="98c-Ga-tWs"/>
+                        <outlet property="bookTitleField" destination="m34-WS-OCu" id="Jse-ip-lOX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVY-rm-dBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
