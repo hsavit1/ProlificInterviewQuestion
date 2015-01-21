@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5C052A591A6ED7E70016B6AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052A581A6ED7E70016B6AA /* main.m */; };
 		5C052A5C1A6ED7E70016B6AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052A5B1A6ED7E70016B6AA /* AppDelegate.m */; };
-		5C052A5F1A6ED7E70016B6AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052A5E1A6ED7E70016B6AA /* ViewController.m */; };
+		5C052A5F1A6ED7E70016B6AA /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052A5E1A6ED7E70016B6AA /* AddBookViewController.m */; };
 		5C052A621A6ED7E70016B6AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C052A601A6ED7E70016B6AA /* Main.storyboard */; };
 		5C052A641A6ED7E70016B6AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C052A631A6ED7E70016B6AA /* Images.xcassets */; };
 		5C052A671A6ED7E70016B6AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C052A651A6ED7E70016B6AA /* LaunchScreen.xib */; };
@@ -34,6 +34,7 @@
 		5C052AB51A6F0D130016B6AA /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5C052AB41A6F0D130016B6AA /* README.rtf */; };
 		5C052AB81A6F0F790016B6AA /* LibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052AB71A6F0F790016B6AA /* LibraryTableViewController.m */; };
 		5C052ABD1A6F369B0016B6AA /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052ABC1A6F369B0016B6AA /* Books.m */; };
+		5C052AC11A6F45830016B6AA /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C052AC01A6F45830016B6AA /* BookDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,8 @@
 		5C052A581A6ED7E70016B6AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5C052A5A1A6ED7E70016B6AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5C052A5B1A6ED7E70016B6AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5C052A5D1A6ED7E70016B6AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5C052A5E1A6ED7E70016B6AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5C052A5D1A6ED7E70016B6AA /* AddBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
+		5C052A5E1A6ED7E70016B6AA /* AddBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
 		5C052A611A6ED7E70016B6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5C052A631A6ED7E70016B6AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5C052A661A6ED7E70016B6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -101,6 +102,8 @@
 		5C052AB71A6F0F790016B6AA /* LibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewController.m; sourceTree = "<group>"; };
 		5C052ABB1A6F369B0016B6AA /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Books.h; sourceTree = "<group>"; };
 		5C052ABC1A6F369B0016B6AA /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Books.m; sourceTree = "<group>"; };
+		5C052ABF1A6F45830016B6AA /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		5C052AC01A6F45830016B6AA /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,10 +149,7 @@
 			children = (
 				5C052A5A1A6ED7E70016B6AA /* AppDelegate.h */,
 				5C052A5B1A6ED7E70016B6AA /* AppDelegate.m */,
-				5C052A5D1A6ED7E70016B6AA /* ViewController.h */,
-				5C052A5E1A6ED7E70016B6AA /* ViewController.m */,
-				5C052AB61A6F0F790016B6AA /* LibraryTableViewController.h */,
-				5C052AB71A6F0F790016B6AA /* LibraryTableViewController.m */,
+				5C052ABE1A6F453C0016B6AA /* View Controllers */,
 				5C052ABB1A6F369B0016B6AA /* Books.h */,
 				5C052ABC1A6F369B0016B6AA /* Books.m */,
 				5C052A601A6ED7E70016B6AA /* Main.storyboard */,
@@ -245,6 +245,19 @@
 			);
 			name = "UIKit+AFNetworking";
 			path = "AFNetworking-master/UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		5C052ABE1A6F453C0016B6AA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C052A5D1A6ED7E70016B6AA /* AddBookViewController.h */,
+				5C052A5E1A6ED7E70016B6AA /* AddBookViewController.m */,
+				5C052AB61A6F0F790016B6AA /* LibraryTableViewController.h */,
+				5C052AB71A6F0F790016B6AA /* LibraryTableViewController.m */,
+				5C052ABF1A6F45830016B6AA /* BookDetailViewController.h */,
+				5C052AC01A6F45830016B6AA /* BookDetailViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +363,7 @@
 			files = (
 				5C052A911A6F0B7F0016B6AA /* AFHTTPRequestOperation.m in Sources */,
 				5C052AB01A6F0B8F0016B6AA /* UIImageView+AFNetworking.m in Sources */,
-				5C052A5F1A6ED7E70016B6AA /* ViewController.m in Sources */,
+				5C052A5F1A6ED7E70016B6AA /* AddBookViewController.m in Sources */,
 				5C052A921A6F0B7F0016B6AA /* AFHTTPRequestOperationManager.m in Sources */,
 				5C052AB11A6F0B8F0016B6AA /* UIProgressView+AFNetworking.m in Sources */,
 				5C052A941A6F0B7F0016B6AA /* AFNetworkReachabilityManager.m in Sources */,
@@ -367,6 +380,7 @@
 				5C052A971A6F0B7F0016B6AA /* AFURLRequestSerialization.m in Sources */,
 				5C052AAC1A6F0B8F0016B6AA /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5C052A991A6F0B7F0016B6AA /* AFURLSessionManager.m in Sources */,
+				5C052AC11A6F45830016B6AA /* BookDetailViewController.m in Sources */,
 				5C052AB81A6F0F790016B6AA /* LibraryTableViewController.m in Sources */,
 				5C052A5C1A6ED7E70016B6AA /* AppDelegate.m in Sources */,
 				5C052A591A6ED7E70016B6AA /* main.m in Sources */,

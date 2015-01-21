@@ -1,27 +1,31 @@
 //
-//  ViewController.m
+//  BookDetailViewController.m
 //  ProlificInterviewQuestion
 //
 //  Created by Henry Savit on 1/20/15.
 //  Copyright (c) 2015 Henry Savit. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BookDetailViewController.h"
 
-@interface ViewController ()
+@interface BookDetailViewController ()
 
 @end
 
-@implementation ViewController
+@implementation BookDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)checkoutButtonPressed:(id)sender {
 }
 
 @end

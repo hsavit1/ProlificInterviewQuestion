@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "UIKit+AFNetworking.h"
 #import "Books.h"
+#import "BookDetailViewController.h"
 
 static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/54be71eb46c2c2000866aa56";
 
@@ -39,7 +40,15 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showDetail"]){
+        NSIndexPath *ind =[[self.tableView indexPathsForSelectedRows] lastObject];
+        Books *selectedBook = [[Books alloc]init];
+        selectedBook = [self.booksFromAFNetworking objectAtIndex:ind.item];
+        ((BookDetailViewController*)segue.destinationViewController).theSelectedBook = selectedBook;
+    }
+    else if([segue.identifier isEqualToString:@"addBook"]){
     
+    }
 }
 
 -(void)makeLibraryRequests
