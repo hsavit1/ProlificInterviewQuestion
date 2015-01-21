@@ -44,14 +44,12 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 
 -(void)makeLibraryRequests
 {
-    NSURL *url = [[NSURL alloc]initWithString:BaseURLString];
+    NSString *getBooksString = [BaseURLString stringByAppendingString:@"/books.json"];
+    NSURL *url = [[NSURL alloc]initWithString:getBooksString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    //operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:getBooksString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"%@", responseObject);
         NSArray *jsonArray = (NSArray *)responseObject;
@@ -77,28 +75,33 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
                                                   otherButtonTitles:nil];
         [alertView show];
     }];
+
     
-    [operation start];
     
-    // 1
-//    NSString *string = [NSString stringWithFormat:@"%@books.php?format=json", BaseURLString];
-//    NSURL *url = [NSURL URLWithString:string];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//
-//    
 //    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+//    operation.responseSerializer.acceptableContentTypes = operation.responseSerializer.acceptableContentTypes;
+//    //operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/json"];
+//
 //    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        
-//        // 3
-//        self.library = (NSDictionary *)responseObject;
-//        self.title = @"JSON Retrieved";
+//        NSLog(@"%@", responseObject);
+//        NSArray *jsonArray = (NSArray *)responseObject;
+//        NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
+//        
+//        for (NSDictionary *dic in jsonArray) {
+//            Books *book = [[Books alloc] initWithDictionary:dic];
+//            [tempBooks addObject:book];
+//        }
+//        
+//        
+//        self.booksFromAFNetworking = [[NSArray alloc] initWithArray:tempBooks];
+//        tempBooks = nil;
+//        
 //        [self.tableView reloadData];
 //        
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        
-//        // 4
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
 //                                                            message:[error localizedDescription]
 //                                                           delegate:nil
 //                                                  cancelButtonTitle:@"Ok"
@@ -106,20 +109,7 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 //        [alertView show];
 //    }];
 //    
-//    // 5
 //    [operation start];
-    
-    
-//    [manager GET:@"books" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//        //self.booksFromAFNetworking = [responseObject objectForKey:@"title"];
-//        
-//        //NSLog(@"The Array: %@",self.booksFromAFNetworking);
-//        
-//        [self.tableView reloadData];
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
 }
 
 #pragma mark - Table view data source
