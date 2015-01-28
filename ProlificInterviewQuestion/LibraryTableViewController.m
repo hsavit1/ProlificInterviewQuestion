@@ -88,38 +88,38 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     //=====================================================================================================================================
 
     
-//    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-//    [securityPolicy setAllowInvalidCertificates:YES];
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.securityPolicy = securityPolicy;
-//    //manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
-//    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-//    [manager GET:[NSString stringWithFormat:@"%@", BaseURLString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        NSLog(@"%@", responseObject);
-//        NSArray *jsonArray = (NSArray *)responseObject;
-//        NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
-//        
-//        for (NSDictionary *dic in jsonArray) {
-//            Books *book = [[Books alloc] initWithDictionary:dic];
-//            [tempBooks addObject:book];
-//        }
-//        
-//        
-//        self.booksFromAFNetworking = [[NSArray alloc] initWithArray:tempBooks];
-//        tempBooks = nil;
-//        
-//        [self.tableView reloadData];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
-//                                                            message:[error localizedDescription]
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"Ok"
-//                                                  otherButtonTitles:nil];
-//        [alertView show];
-//    }];
+    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+    [securityPolicy setAllowInvalidCertificates:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.securityPolicy = securityPolicy;
+    //manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:[NSString stringWithFormat:@"%@", BaseURLString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"%@", responseObject);
+        NSArray *jsonArray = (NSArray *)responseObject;
+        NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary *dic in jsonArray) {
+            Books *book = [[Books alloc] initWithDictionary:dic];
+            [tempBooks addObject:book];
+        }
+        
+        
+        self.booksFromAFNetworking = [[NSArray alloc] initWithArray:tempBooks];
+        tempBooks = nil;
+        
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
     
     //=====================================================================================================================================
 
