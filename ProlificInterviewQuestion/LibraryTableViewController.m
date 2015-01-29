@@ -13,7 +13,7 @@
 #import "Books.h"
 #import "BookDetailViewController.h"
 
-static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/54be71eb46c2c2000866aa56?";
+static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.com/54be71eb46c2c2000866aa56";
 
 @interface LibraryTableViewController (){
     NSArray *items;
@@ -88,72 +88,72 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     //=====================================================================================================================================
 
     
-    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-    [securityPolicy setAllowInvalidCertificates:YES];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.securityPolicy = securityPolicy;
-    //manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
-    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    [manager GET:[NSString stringWithFormat:@"%@", BaseURLString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"%@", responseObject);
-        NSArray *jsonArray = (NSArray *)responseObject;
-        NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
-        
-        for (NSDictionary *dic in jsonArray) {
-            Books *book = [[Books alloc] initWithDictionary:dic];
-            [tempBooks addObject:book];
-        }
-        
-        
-        self.booksFromAFNetworking = [[NSArray alloc] initWithArray:tempBooks];
-        tempBooks = nil;
-        
-        [self.tableView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-    
+//    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+//    [securityPolicy setAllowInvalidCertificates:YES];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.securityPolicy = securityPolicy;
+//    //manager.responseSerializer.acceptableContentTypes = manager.responseSerializer.acceptableContentTypes;
+//    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+//    [manager GET:[NSString stringWithFormat:@"%@", BaseURLString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSLog(@"%@", responseObject);
+//        NSArray *jsonArray = (NSArray *)responseObject;
+//        NSMutableArray *tempBooks = [[NSMutableArray alloc] init];
+//        
+//        for (NSDictionary *dic in jsonArray) {
+//            Books *book = [[Books alloc] initWithDictionary:dic];
+//            [tempBooks addObject:book];
+//        }
+//        
+//        
+//        self.booksFromAFNetworking = [[NSArray alloc] initWithArray:tempBooks];
+//        tempBooks = nil;
+//        
+//        [self.tableView reloadData];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Books"
+//                                                            message:[error localizedDescription]
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:nil];
+//        [alertView show];
+//    }];
+//    
     //=====================================================================================================================================
 
     
     //this is for getting the HTTP data- which is the data from the webpage
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
-    
-    NSURL * url = [NSURL URLWithString:BaseURLString];
-    
-    NSURLSessionDataTask * dataTask = [delegateFreeSession dataTaskWithURL:url
-                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                             
-                                                             if(error == nil)
-                                                             {
-                                                                 NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-                                                                 NSLog(@"Data = %@",text);
-                                                                 
-                                                                 
-                                                                 NSMutableDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error: &error];
-                                                                 
-                                                                 if (!jsonArray) {
-                                                                     NSLog(@"Error parsing JSON: %@", error);
-                                                                 } else {
-                                                                     
-                                                                     NSLog(@"resp: %@ = %@",[jsonArray objectForKey:@"books"],[jsonArray objectForKey:@"books"]);
-                                                                     NSLog(@"Dictionary count: %lu", jsonArray.count);
-                                                                 }
-                                                                 
-                                                             }
-                                                             
-                                                         }];
-    
-    [dataTask resume];
+//    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+//    
+//    NSURL * url = [NSURL URLWithString:BaseURLString];
+//    
+//    NSURLSessionDataTask * dataTask = [delegateFreeSession dataTaskWithURL:url
+//                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                                             
+//                                                             if(error == nil)
+//                                                             {
+//                                                                 NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+//                                                                 NSLog(@"Data = %@",text);
+//                                                                 
+//                                                                 
+//                                                                 NSMutableDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableLeaves error: &error];
+//                                                                 
+//                                                                 if (!jsonArray) {
+//                                                                     NSLog(@"Error parsing JSON: %@", error);
+//                                                                 } else {
+//                                                                     
+//                                                                     NSLog(@"resp: %@ = %@",[jsonArray objectForKey:@"books"],[jsonArray objectForKey:@"books"]);
+//                                                                     NSLog(@"Dictionary count: %lu", jsonArray.count);
+//                                                                 }
+//                                                                 
+//                                                             }
+//                                                             
+//                                                         }];
+//    
+//    [dataTask resume];
     
     
     
@@ -231,36 +231,112 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
 //    // Start the download task
 //    [dataTask resume];
 
+    //=====================================================================================================================================
 
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:BaseURLString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//        NSLog(@"%@", json);
+//    }];
+//    [dataTask resume];
+    
+    //=====================================================================================================================================
 
+//    // Create Session Configuration
+//    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    
+//    // Configure Session Configuration
+//    [sessionConfiguration setAllowsCellularAccess:YES];
+//    [sessionConfiguration setHTTPAdditionalHeaders:@{ @"GET" : @"books/1" }];
+//    
+//    // Create Session
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+//    
+//    // Send Request
+//    NSURL *url = [NSURL URLWithString:BaseURLString];
+//    [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:0 error:nil]);
+//    }] resume];
+    
+    //=====================================================================================================================================
+    NSURL *url = [NSURL URLWithString:BaseURLString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        //parse data here!!
+        
+        NSError *jsonError;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        
+        if (json) {
+            NSArray *allBooks = [json objectForKey:@"books"];
+            
+            //create your MutableArray here
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+        else{
+            NSLog(@"error occured %@", jsonError);
+
+            NSString *serverResponse = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            
+            NSLog(@"\n\nError:\n%@\n\nServer Response:\n%@\n\nCrash:", jsonError.description, serverResponse);
+            [NSException raise:@"Invalid Data" format:@"Unable to process web server response."];
+        }
+        
+    }];
+    
+ 
+    //====================GET=======================
+//    NSURL *url = [NSURL URLWithString:BaseURLString];
+//    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+//    [urlRequest setTimeoutInterval:30.0f];
+//    [urlRequest setHTTPMethod:@"GET"];
+//    
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    
+//    
+//    [NSURLConnection
+//     sendAsynchronousRequest:urlRequest
+//     queue:queue
+//     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//         NSDictionary* json = [NSJSONSerialization
+//                               JSONObjectWithData:data //1
+//                               options:kNilOptions
+//                               error:&error];
+//         
+//         items = (NSArray*)json;
+//         
+//         //[self performSelectorOnMainThread:@selector(updatePeopleList:) withObject:self waitUntilDone:NO];
+//     }];
+//    
 }
 
 
-
-
-/* The task has received a response and no further messages will be
- * received until the completion block is called. The disposition
- * allows you to cancel a request or to turn a data task into a
- * download task. This delegate message is optional - if you do not
- * implement it, you can get the response as a property of the task.
- */
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-didReceiveResponse:(NSURLResponse *)response
- completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
-{
-    completionHandler(NSURLSessionResponseAllow);
-}
-
-/* Sent when data is available for the delegate to consume.  It is
- * assumed that the delegate will retain and not copy the data.  As
- * the data may be dis-contiguous, you should use
- * [NSData enumerateByteRangesUsingBlock:] to access it.
- */
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-    didReceiveData:(NSData *)data
-{
-    //data: response from the server.
-}
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+//    NSData *data = [NSData dataWithContentsOfURL:location];
+//    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        //[self.progressView setHidden:YES];
+//        //[self.imageView setImage:[UIImage imageWithData:data]];
+//    });
+//}
+//
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
+//    
+//}
+//
+//- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+//    float progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+//    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        //[self.progressView setProgress:progress];
+//    });
+//}
 
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -285,18 +361,18 @@ didReceiveResponse:(NSURLResponse *)response
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *tempDictionary= [self.booksFromAFNetworking objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = [tempDictionary objectForKey:@"Title"];
-    
-    if([tempDictionary objectForKey:@"rating"] != NULL)
-    {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Author: %@ ",[tempDictionary   objectForKey:@"Author"]];
-    }
-    else
-    {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"No Author"];
-    }
+//    NSDictionary *tempDictionary= [self.booksFromAFNetworking objectAtIndex:indexPath.row];
+//    
+//    cell.textLabel.text = [tempDictionary objectForKey:@"Title"];
+//    
+//    if([tempDictionary objectForKey:@"rating"] != NULL)
+//    {
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"Author: %@ ",[tempDictionary   objectForKey:@"Author"]];
+//    }
+//    else
+//    {
+//        cell.detailTextLabel.text = [NSString stringWithFormat:@"No Author"];
+//    }
     
     return cell;
 }
