@@ -260,9 +260,12 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
     
     //=====================================================================================================================================
     NSURL *url = [NSURL URLWithString:BaseURLString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url]; //;]cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:20.0f];
+    [request setHTTPMethod:@"GET"];
+    //    This is actually how jQuery works. If you don't tell it what to do with the result, it uses the Content-type to detect what to do with it.
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    //[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //[request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc]init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         //parse data here!!
@@ -271,7 +274,7 @@ static NSString * const BaseURLString = @"http://prolific-interview.herokuapp.co
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
         
         if (json) {
-            NSArray *allBooks = [json objectForKey:@"books"];
+            //NSArray *allBooks = [json objectForKey:@"books"];
             
             //create your MutableArray here
             
